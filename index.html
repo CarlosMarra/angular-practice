@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp"> <!--directives (command) that refers to the controller named myApp-->
+								<!--this command tells Angular the code for whatever is inside the HTML tag is going to be controlled by this new myApp module.-->
+<head>
+	<meta charset="UTF-8">
+	<title>Angular.js Tutorial</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular/angular-route.min.js"></script>
+	<script src="bower_components/angular/angular-animate.min.js"></script>
+	<script src="app.js"></script>
+	<script src="controllers.js"></script>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	
+<!--
+	<input type="text" ng-model="name"> <binding input field (model)
+	<h2>Welcome {{name}}</h2>			into our template (h2), also known as an expression
+-->
+
+<!--
+<div ng-controller = "MyController">
+	<h1>{{ author.name }}</h1>
+	<p>{{ author.title + ', ' + author.company }} </p>
+</div>
+-->
+
+<div class="main" ng-view></div> <!---letting Angular know that this area of HTML is going to be controlled by the different snippets of code created in partial files -->
+
+
+</body>
+</html>

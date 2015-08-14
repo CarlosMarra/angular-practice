@@ -1,0 +1,43 @@
+<section class="artistpage">
+    <div class="search">
+        <h1>Artist Directory</h1>
+        <label>search: </label>
+        <input ng-model="query" placeholder="Search for artists" autofocus> <!-- we are creating a model here that acts like a filter-->
+                                                                            <!-- the contents (typing in "ba" for example) of the model (the value of 'ba') will become the filter for 'item    ' -->
+        <label class="formgroup">by:
+            <select ng-model="artistOrder">
+                <option value="name">Name</option>          <!-- name and reknown values are linking to the json file-->
+                <option value="reknown">Reknown</option>    
+            </select>
+        </label>
+
+        <label class="formgroup">
+            <input type="radio" ng-model="direction" name="direction" checked>
+            ascending
+         </label>
+        <label class="formgroup">
+            <input type="radio" ng-model="direction" name="direction" value="reverse">
+            descending
+        </label>
+
+    </div>
+    <ul class="artistlist" ng-show="query"> <!--- by default, only what matches the query will be shown... if this wasn't there, all of the data will be shown-->
+        <li ng-Animate="'animate'" class="artist cf" ng-repeat="item in artists | filter: query | orderBy: artistOrder:direction"> 
+            <!--- '|' symbol adds filters ... ':' symbol adds subfilters to filters  -->
+            <!--- ng-repeat allows us to go through the elements in an array (the JSON file!)-->
+            <!--- repeat states that for every object, repeat the template-->
+            <!--- create a variable called item that reads data from an artist's variable-->
+            <a href="#/details/{{artists.indexOf(item)}}">
+            <!--- the whole structure of the list is wrapped in a link-->
+            <!--- this link, when clicked on should direct to the the bio of the artist that was clicked-->
+            <!--- #/details/ is the route to the partial template for the bios, which is created in details.html-->
+            <!--- {{artists.indexOf(item)}} is the index number of the array in the JSON file that contains all of the information about the artist-->
+                <img ng-src="images/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}"> <!--- for images, use the ng-src command -->
+                <div class="info">
+                    <h2>{{item.name}}</h2>                          <!--- '|' symbol adds filters-->
+                    <h3>{{item.reknown}}</h3>                       <!--- check out more filters on angular.js documentation-->
+                </div>
+            </a>
+        </li>
+    </ul>
+</section>
